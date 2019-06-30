@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <add-fruit @add='insertFruit'></add-fruit>
+
+        <ul>
+            <li :key='index' v-for='(item,index) in list' v-text='item'></li>
+        </ul>
+    </div>
+
+
+    <script src="./vue.js"></script>
+    <script>
+        Vue.component('add-fruit', {
+            data() {
+                return {
+                    myFruit: '榴莲'
+                }
+            },
+            template: `<div>
+            <button @click>`
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                list: ['香蕉', '苹果', '橘子']
+            },
+            methods: {
+                insertFruit() {
+                    this.list.push('榴莲');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

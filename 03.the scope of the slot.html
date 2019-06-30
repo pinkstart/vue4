@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .current {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <fruit :list='list'>
+            <template slot-scope='scope'>
+                <strong v-if='scope.item.isHot' class="current">{{scope.item.name}}</strong>
+                <span v-else>{{scope.item.name}}</span>
+            </template>
+        </fruit>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        Vue.component('fruit', {
+            props: ['list'],
+            data: function() {
+                return {
+
+                }
+            },
+            template: `<ul>
+                <li :key='index' v-for='(item,index) in list'> 
+                    <slot :item='item'> </slot> 
+                </li>
+            </ul>`
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [{
+                    name: '车厘子',
+                    isHot: true
+                }, {
+                    name: '火龙果',
+                    isHot: false
+                }, {
+                    name: '西瓜',
+                    isHot: true
+                }, {
+                    name: '香蕉',
+                    isHot: false
+                }]
+            }
+        })
+    </script>
+</body>
+
+</html>
